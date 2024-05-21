@@ -57,7 +57,7 @@ Add additional variables like \"\\(\\borg-babel.+\\|sql-connection-alist\\)\".")
 (defalias 'org-babel-execute-src-block:async 'ob-async-org-babel-execute-src-block)
 
 ;;;###autoload
-(defun ob-async-org-babel-execute-src-block (&optional orig-fun arg info params)
+(defun ob-async-org-babel-execute-src-block (&optional orig-fun arg info params executor-type)
   "Like org-babel-execute-src-block, but run asynchronously.
 
 Original docstring for org-babel-execute-src-block:
