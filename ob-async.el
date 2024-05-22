@@ -53,6 +53,8 @@ initialization which would normally execute in your init file.")
 It's a good idea to include any variables that are prefixed with `org-babel'.
 Add additional variables like \"\\(\\borg-babel.+\\|sql-connection-alist\\)\".")
 
+(defvar ob-async-exclude-variables "org-babel-expand-noweb-references--cache-buffer")
+
 ;;;###autoload
 (defalias 'org-babel-execute-src-block:async 'ob-async-org-babel-execute-src-block)
 
@@ -161,7 +163,7 @@ block."
                       ;; Initialize the new Emacs process with org-babel functions
                       (setq exec-path ',exec-path)
                       (setq load-path ',load-path)
-                      ,(async-inject-variables ob-async-inject-variables)
+                      ,(async-inject-variables ob-async-inject-variables nil ob-async-exclude-variables)
                       (package-initialize)
                       (setq ob-async-pre-execute-src-block-hook ',ob-async-pre-execute-src-block-hook)
                       (run-hooks 'ob-async-pre-execute-src-block-hook)
